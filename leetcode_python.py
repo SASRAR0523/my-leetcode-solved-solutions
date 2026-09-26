@@ -88,10 +88,36 @@ class Solution:
         for i in range(1, r + 1):            
             ans = ans * (N - r + i) // i
 
-# Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside 
-# the signed 32-bit integer range [-231, 231 - 1], then return 0.
+# You are given a string s that contains some bracket pairs, with each pair containing a non-empty key.
 
-# Assume the environment does not allow you to store 64-bit integers (signed or unsigned).      
+# For example, in the string "(name)is(age)yearsold", there are two bracket pairs that contain the keys "name" and "age".
+# You know the values of a wide range of keys. This is represented by a 2D string array knowledge where 
+# each knowledge[i] = [keyi, valuei] indicates that key keyi has a value of valuei.
+
+# You are tasked to evaluate all of the bracket pairs. When you evaluate a bracket pair that contains some key keyi, you will:
+
+# Replace keyi and the bracket pair with the key's corresponding valuei.
+# If you do not know the value of the key, you will replace keyi and the bracket pair with a question mark "?" (without the quotation marks).
+# Each key will appear at most once in your knowledge. There will not be any nested brackets in s.
+
+# Return the resulting string after evaluating all of the bracket pairs.
+ class Solution:
+    def evaluate(self, s, knowledge):
+        mp = dict(knowledge)
+        ans = []
+        i = 0
+
+        while i < len(s):
+            if s[i] == '(':
+                j = s.index(')', i)
+                key = s[i + 1:j]
+                ans.append(mp.get(key, '?'))
+                i = j + 1
+            else:
+                ans.append(s[i])
+                i += 1
+
+        return ''.join(ans)     
 
 
 
