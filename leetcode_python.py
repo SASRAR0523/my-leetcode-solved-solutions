@@ -119,8 +119,35 @@ class Solution:
 
         return ''.join(ans)     
 
+# You are given a string s that consists of lower case English letters and brackets.
 
+# Reverse the strings in each pair of matching parentheses, starting from the innermost one.
 
+# Your result should not contain any brackets.
+
+class Solution:
+    def reverseParentheses(self, s: str) -> str:
+        stack = []
+
+        for ch in s:
+            if ch == ')':
+                temp = []
+
+                while stack[-1] != '(':
+                    temp.append(stack.pop())
+
+                stack.pop()  # remove '('
+
+                stack.extend(temp)
+
+            elif ch == '(':
+                stack.append(ch)
+
+            else:
+                stack.append(ch)
+
+        return ''.join(stack)
+        
 
 
 
