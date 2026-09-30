@@ -173,3 +173,44 @@ class Solution:
                 depth -= 1
 
         return ans
+
+# You are given an integer array nums.
+
+# Return the smallest index i such that the sum of the digits of nums[i] is equal to i.
+
+# If no such index exists, return -1.
+
+class Solution:
+    def smallestIndex(self, nums):
+        for i, num in enumerate(nums):
+            if sum(map(int, str(num))) == i:
+                return i
+        return -1
+
+# Given a string containing digits from 2-9 inclusive, return all possible letter combinations 
+# that the number could represent. Return the answer in any order.
+
+# A mapping of digits to letters (just like on the telephone buttons) is given below. Note that 1 does not map to any letters.
+
+class Solution:
+    def letterCombinations(self, digits):
+        mp = {
+            '2': 'abc', '3': 'def', '4': 'ghi',
+            '5': 'jkl', '6': 'mno', '7': 'pqrs',
+            '8': 'tuv', '9': 'wxyz'
+        }
+
+        ans = []
+
+        def backtrack(i, cur):
+            if i == len(digits):
+                ans.append(cur)
+                return
+
+            for ch in mp[digits[i]]:
+                backtrack(i + 1, cur + ch)
+
+        backtrack(0, "")
+        return ans
+        
+        
