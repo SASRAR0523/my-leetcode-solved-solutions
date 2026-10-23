@@ -408,4 +408,22 @@ class Solution:
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
         return haystack.find(needle)
+
+# You are given an integer array nums of length n, where nums is a permutation of the numbers in the range [0..n - 1].
+
+# You may swap elements at indices i and j only if nums[i] AND nums[j] == k, where AND denotes the bitwise AND operation and k is a non-negative integer.
+
+# Return the maximum value of k such that the array can be sorted in non-decreasing order using any number of such swaps. If nums is already sorted, return 0.
+
+ class Solution:
+    def sortPermutation(self, nums: List[int]) -> int:
+        k = -1
         
+        for i, val in enumerate(nums):
+            if val != i:
+                if k == -1:
+                    k = val
+                else:
+                    k &= val
+        
+        return 0 if k == -1 else k
