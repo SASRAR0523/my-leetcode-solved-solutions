@@ -450,6 +450,44 @@ class Solution:
             slow = slow.next
             fast = fast.next.next
 
+# You are given a 2D integer array grid of size m * n.
+
+# You start at the top-left cell (0, 0) and want to reach the bottom-right cell (m - 1, n - 1).
+
+# At each step, you may move either right or down.
+
+# The cost of a path is defined as the bitwise XOR of all the values in the cells along that path, including the start and end cells.
+
+# Return the minimum possible XOR value among all valid paths from (0, 0) to (m - 1, n - 1).
+
+from typing import List
+
+class Solution:
+    def minCost(self, grid: List[List[int]]) -> int:
+        m, n = len(grid), len(grid[0])
+
+        dp = [[set() for _ in range(n)] for _ in range(m)]
+        dp[0][0].add(grid[0][0])
+
+        for i in range(m):
+            for j in range(n):
+                if i == 0 and j == 0:
+                    continue
+
+                if i > 0:
+                    for x in dp[i - 1][j]:
+                        dp[i][j].add(x ^ grid[i][j])
+
+                if j > 0:
+                    for x in dp[i][j - 1]:
+                        dp[i][j].add(x ^ grid[i][j])
+
+        return min(dp[m - 1][n - 1])
+
+
+ 
+# 
+
             if slow is fast:
                 return True
 
