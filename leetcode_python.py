@@ -502,3 +502,17 @@ class Solution:
                 k += 1
 
         return k
+
+# Given an integer array nums of size n, return the minimum number of moves required to make all array elements equal.
+
+# In one move, you can increment n - 1 elements of the array by 1.
+
+class Solution:
+    def minMoves(self, nums: List[int]) -> int:
+        minimum = min(nums)
+        moves = 0
+
+        for num in nums:
+            moves += num - minimum
+
+        return moves
