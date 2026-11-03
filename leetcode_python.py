@@ -531,3 +531,19 @@ class Solution:
             moves += abs(num - median)
 
         return moves
+
+# You are given an integer array nums.
+
+# In one move, you may increase the value of any single element nums[i] by 1.
+
+# Return the minimum total number of moves required so that all elements in nums become equal.
+
+class Solution:
+    def minMoves(self, nums: list[int]) -> int:
+        max_num = max(nums)
+        moves = 0
+
+        for num in nums:
+            moves += max_num - num
+
+        return moves
